@@ -28,20 +28,6 @@ resource "aws_instance" "matrix_ec2" {
   }
 }
 
-resource "aws_instance" "kubernetes_ec2" {
-  ami                         = data.aws_ami.ubuntu.id
-  instance_type               = "t2.micro"
-  key_name                    = "" # Insira o nome da chave criada antes.
-  subnet_id                   = var._subnet_public_id
-  vpc_security_group_ids      = [aws_security_group.permitir_ssh_http.id]
-  associate_public_ip_address = true
-
-  tags = {
-    Name = "Matrix-1"
-    # Insira o nome da instância de sua preferência.
-  }
-}
-
 variable "_vpc_id" {
   default = "" # Orientações para copia da VPC ID abaixo.
 }
